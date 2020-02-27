@@ -1,0 +1,12 @@
+import requests
+from bs4 import BeautifulSoup
+
+word = input("Enter a word:")
+
+r = requests.get("https://www.merriam-webster.com/dictionary/{}".format(word))
+
+soup = BeautifulSoup(r.content,"html.parser")
+
+meaning = soup.find("span",attrs={"class":"dtText"}).text 
+
+print("The definition of",word,"is,",meaning)
